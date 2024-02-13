@@ -1,0 +1,18 @@
+﻿@charset "utf-8";
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    border-style: none;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    font: inherit;
+}
+
+body {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+}

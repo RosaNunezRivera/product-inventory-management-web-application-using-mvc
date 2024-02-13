@@ -1,0 +1,58 @@
+﻿@model Product_Inventory_Management_Web_Application_using_MVC.Models.ViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Product Inventory Management</title>
+    <link rel="stylesheet" href="~/Content/index.css" />
+</head>
+<body>
+
+    <main>
+
+        <section class="section-products">
+            <div class="container">
+                <center><h1>Product Inventory Management Application</h1></center>
+                <!--Printing the List of Products-->
+                <div class="AddProductsContainer">
+                    <p>Welcome to the Product Inventory Management Web Application </p>
+                    @Html.ActionLink("Create Product", "ProductRegisterView", "ProductInventory", new { @class = "button-link" })
+                </div>
+                <div class="div-products-list">
+                    <table>
+                        <caption>Product Inventory Detail</caption>
+                        <thead>
+                            <tr>
+                                <!--Printing the title of the list-->
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var prod in Model.Products)
+                            {
+                                <tr>
+                                    <td>@prod.GetProductID()</td>
+                                    <td>@prod.GetName()</td>
+                                    <td>@prod.GetDescription()</td>
+                                    <td class="date-number">@prod.GetPrice().ToString("C")</td>
+                                    <td>@Model.GetStockQuantityForProduct(prod.GetProductID())</td>
+                                    <td>@Html.ActionLink("Delete", "DeleteProduct", "ProductInventory", new { id = prod.GetProductID() }, new { @class = "button-link" })</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

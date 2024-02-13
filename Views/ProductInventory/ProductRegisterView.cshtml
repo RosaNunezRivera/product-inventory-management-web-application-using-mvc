@@ -1,0 +1,66 @@
+﻿@model Product_Inventory_Management_Web_Application_using_MVC.Models.ViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Product Inventory Management</title>
+    <link rel="stylesheet" href="~/Content/index.css" />
+</head>
+<body>
+    <main>
+        <section class="section-form">
+            <div class="container">
+                <center><h1>Product Inventory Management Application</h1></center>
+                <center><h2>Product Registration</h2></center>
+                <div class="div-register-form">
+                    <!--Specifying the start of the form using the method 'ProductsRegistration' and controller 'ProductInventory'-->
+                    <!---->
+                    @using (Html.BeginForm("CreateProduct", "ProductInventory"))
+                    {
+                        int productId = Model.UniqueIDs.FirstOrDefault()?.GetProductID() ?? -1;
+                        @Html.Hidden("productId", productId)
+
+                        int inventoryId = Model.UniqueIDs.FirstOrDefault()?.GetInventoryID() ?? -1;
+                        @Html.Hidden("inventoryId", inventoryId)
+
+
+                        <div class="row">
+                            <label> Name: </label>
+                            @Html.TextBox("name", null, new { required = "required" })
+                        </div>
+
+                        <div class="row">
+                            <label>Description:</label>
+                            @Html.TextBox("description", null, new { required = "required" })
+                        </div>
+
+                        <div class="row">
+                            <label>Price</label>
+                            @Html.TextBox("price", null, new { type = "number", step = "0.01", required = "required" })
+                        </div>
+
+                        <div class="row">
+                            <label>Stock Quantity</label>
+                            @Html.TextBox("stock", 0, new { type = "number", min = "0" })
+                        </div>
+
+                        <div class="row-bottom">
+                            <input type="Submit" value="Register Product" />
+
+                            @Html.ActionLink("Inventory", "Index", "ProductInventory", new { @class = "button-link-main-page" }) 
+                        </div>
+                      
+                    }
+                </div>
+                <div class="result">
+
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
